@@ -58,7 +58,8 @@ app.layout = dcc.Loading(
     fullscreen=True
 )
 
-server = app.server
+application = app.server
 
 if __name__ == '__main__':
-    app.run_server(debug=False, host='0.0.0.0', port='8000')
+    # app.run_server(debug=False, host='0.0.0.0', port='8000')
+    application.run(debug=False, host='0.0.0.0', port='8000')
