@@ -13,17 +13,17 @@ navbar = create_navbar()
 FA47 = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'
 FA512 = "https://use.fontawesome.com/releases/v5.12.1/css/all.css"
 
-app = dash.Dash(__name__,
-                suppress_callback_exceptions=True,
-                external_stylesheets=[dbc.themes.FLATLY,
+dash_app = dash.Dash(__name__,
+                     suppress_callback_exceptions=True,
+                     external_stylesheets=[dbc.themes.FLATLY,
                                       FA47,
                                       FA512,
                                       ],
-                use_pages=True,
-                )
+                     use_pages=True,
+                     )
 
 
-app.index_string = '''
+dash_app.index_string = '''
 <!DOCTYPE html>
 <html>
     <head>
@@ -44,7 +44,7 @@ app.index_string = '''
 </html>
 '''
 
-app.layout = dcc.Loading(
+dash_app.layout = dcc.Loading(
     id='loading_page_content',
     children=[
         html.Div(
@@ -58,8 +58,7 @@ app.layout = dcc.Loading(
     fullscreen=True
 )
 
-application = app.server
+app = dash_app.server
 
 if __name__ == '__main__':
-    # app.run_server(debug=False, host='0.0.0.0', port='8000')
-    application.run(debug=False, host='0.0.0.0', port='8000')
+    app.run(debug=False, host='0.0.0.0', port='8000')
