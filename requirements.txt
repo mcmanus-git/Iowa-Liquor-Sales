@@ -1,0 +1,12 @@
+# This file may be used to create an environment using:
+# $ conda create --name <env> --file <this file>
+# platform: osx-64
+dash==2.6.1
+dash-bootstrap-components==1.2.1
+flask
+flask-compress
+gunicorn==20.1.0
+ipython
+matplotlib
+pandas
+h3
