@@ -9,6 +9,6 @@ munkres==1.1.4
 pandas==1.4.3
 Pillow==9.2.0
 ply==3.11
-sodapy==2.1.1
+sodapy==2.2.0
 matplotlib==3.5.2
-
+pymssql==2.2.3
