@@ -5,6 +5,7 @@ import h3
 from sodapy import Socrata # < Unmaintained as of August 31, 2022, just in time for this project
 import numpy as np
 from datetime import datetime, timedelta
+from tqdm import tqdm
 
 # Config Globals
 KEY = IowaData.api_key
@@ -71,16 +72,19 @@ def load(df):
 
 
 def main():
-
     date_intervals = [
         [
-            f"{datetime(y, m, 1):%Y-%m-%d}", f"{get_last_date_of_month(y, m)}"
-        ] for y in range(2012, datetime.now().year + 1) for m in range(1, 13)
+            f"{datetime(y, m, 1):%Y-%m-%d}",
+            f"{get_last_date_of_month(y, m)}"
+        ]
+        for y in range(2012, datetime.now().year + 1)
+        for m in range(1, 13)
+        if (y <= datetime.now().year and datetime.now().month > m)
     ]
 
     client = Socrata("data.iowa.gov", app_token=TOKEN)
 
-    for interval in date_intervals:
+    for interval in tqdm(date_intervals):
         run_start_time = datetime.now()
         try:
             date_between = f"(date between '{interval[0]}' and '{interval[1]}')"
