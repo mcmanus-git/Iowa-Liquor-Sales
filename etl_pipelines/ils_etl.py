@@ -52,6 +52,9 @@ def clean_dataframe(df, h3_resolution=8):
     df[float_cols] = df[float_cols].astype(float)
     df.drop('store_location', axis=1, inplace=True)
 
+    str_cols = list(df.select_dtypes(include='object'))
+    df[str_cols] = df[str_cols].astype(str)
+
     return df
 
 
@@ -126,7 +129,6 @@ def main():
             results = client.get_all(liquor_sales_data_id, where=date_between)
             socrata_df = pd.DataFrame.from_records(results)
             socrata_df = clean_dataframe(socrata_df)
-            print(f"Max date: {socrata_df['date'].max()}")
             print("Loading results...")
             load(socrata_df)
             log(run_start_time, interval)
