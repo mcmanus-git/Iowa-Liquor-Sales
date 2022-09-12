@@ -1,10 +1,17 @@
 time_stamp, run_time_min, start_date, end_date, successful, error
-2022-09-09 22:28:50.609779, 0:00:55.578335, 2012-01-01, 2012-01-31, 1, 
-2022-09-09 22:30:50.809604, 0:00:57.416926, 2012-01-01, 2012-01-31, 1, NaN
-2022-09-09 22:53:30.277133, 0:02:08.466116, 2012-01-01, 2012-01-31, 0, NaN
-2022-09-09 22:55:28.941496, 0:01:05.854957, 2012-01-01, 2012-01-31, 0, invalid literal for int() with base 10: '712-2'
-2022-09-09 23:01:23.165295, 0:01:15.937659, 2012-01-01, 2012-01-31, 0, object cannot be converted to a FloatingDtype
-2022-09-09 23:13:04.601783, 0:01:39.195776, 2012-01-01, 2012-01-31, 0, cannot convert float NaN to integer
-2022-09-09 23:15:34.657303, 0:01:09.454808, 2012-01-01, 2012-01-31, 1, NaN
-2022-09-09 23:19:52.470528, 0:01:08.305012, 2012-01-01, 2012-01-31, 1, NaN
-2022-09-09 23:57:19.860751, 0:01:32.522438, 2012-01-01, 2012-01-31, 1, NaN
+2022-09-11 23:17:15.263989, 0:02:25.935735, 2012-01-01, 2012-01-31, 0, (18456, b"Login failed for user 'msmcmanu'.DB-Lib error message 20018, severity 14:\nGeneral SQL Server error: Check messages from the SQL Server\nDB-Lib error message 20002, severity 9:\nAdaptive Server connection failed (iowa-liquor.database.windows.net)\nDB-Lib error message 20002, severity 9:\nAdaptive Server connection failed (iowa-liquor.database.windows.net)\n")
+2022-09-11 23:23:20.307512, 0:01:16.613429, 2012-01-01, 2012-01-31, 0, 'params' arg (<class 'list'>) can be only a tuple or a dictionary.
+2022-09-11 23:46:33.927823, 0:01:54.601828, 2012-01-01, 2012-01-31, 0, (245, b"Conversion failed when converting the nvarchar value 'Pottawattamie' to data type int.DB-Lib error message 20018, severity 16:\nGeneral SQL Server error: Check messages from the SQL Server\n")
+2022-09-11 23:49:48.665461, 0:03:14.673822, 2012-02-01, 2012-02-29, 0, (245, b"Conversion failed when converting the nvarchar value 'MISC. IMPORTED CORDIALS & LIQUEURS' to data type int.DB-Lib error message 20018, severity 16:\nGeneral SQL Server error: Check messages from the SQL Server\n")
+2022-09-11 23:51:34.329071, 0:01:45.599338, 2012-03-01, 2012-03-31, 0, (245, b"Conversion failed when converting the nvarchar value 'CANADIAN WHISKIES' to data type int.DB-Lib error message 20018, severity 16:\nGeneral SQL Server error: Check messages from the SQL Server\n")
+2022-09-11 23:52:58.401273, 0:01:24.001171, 2012-04-01, 2012-04-30, 0, (245, b"Conversion failed when converting the nvarchar value 'Story' to data type int.DB-Lib error message 20018, severity 16:\nGeneral SQL Server error: Check messages from the SQL Server\n")
+2022-09-11 23:54:33.633449, 0:01:35.164630, 2012-05-01, 2012-05-31, 0, (245, b"Conversion failed when converting the nvarchar value 'TEQUILA' to data type int.DB-Lib error message 20018, severity 16:\nGeneral SQL Server error: Check messages from the SQL Server\n")
+2022-09-11 23:55:59.034549, 0:01:25.345582, 2012-06-01, 2012-06-30, 0, (245, b"Conversion failed when converting the nvarchar value 'Polk' to data type int.DB-Lib error message 20018, severity 16:\nGeneral SQL Server error: Check messages from the SQL Server\n")
+2022-09-11 23:57:26.800022, 0:01:27.715784, 2012-07-01, 2012-07-31, 0, (245, b"Conversion failed when converting the nvarchar value 'Winneshiek' to data type int.DB-Lib error message 20018, severity 16:\nGeneral SQL Server error: Check messages from the SQL Server\n")
+2022-09-12 00:05:39.305856, 0:01:03.904422, 2012-01-01, 2012-01-31, 1, NaN
+2022-09-12 00:08:34.560257, 0:01:38.069043, 2012-01-01, 2012-01-31, 0, (245, b"Conversion failed when converting the nvarchar value 'Pottawattamie' to data type int.DB-Lib error message 20018, severity 16:\nGeneral SQL Server error: Check messages from the SQL Server\n")
+2022-09-12 00:11:20.353402, 0:02:45.731670, 2012-02-01, 2012-02-29, 0, (245, b"Conversion failed when converting the nvarchar value 'MISC. IMPORTED CORDIALS & LIQUEURS' to data type int.DB-Lib error message 20018, severity 16:\nGeneral SQL Server error: Check messages from the SQL Server\n")
+2022-09-12 00:13:11.458816, 0:01:51.038765, 2012-03-01, 2012-03-31, 0, (245, b"Conversion failed when converting the nvarchar value 'CANADIAN WHISKIES' to data type int.DB-Lib error message 20018, severity 16:\nGeneral SQL Server error: Check messages from the SQL Server\n")
+2022-09-12 00:14:44.746828, 0:01:33.220665, 2012-04-01, 2012-04-30, 0, (245, b"Conversion failed when converting the nvarchar value 'Story' to data type int.DB-Lib error message 20018, severity 16:\nGeneral SQL Server error: Check messages from the SQL Server\n")
+2022-09-12 00:16:26.227111, 0:01:41.410208, 2012-05-01, 2012-05-31, 0, (245, b"Conversion failed when converting the nvarchar value 'TEQUILA' to data type int.DB-Lib error message 20018, severity 16:\nGeneral SQL Server error: Check messages from the SQL Server\n")
+2022-09-12 00:31:10.946260, 0:01:14.786597, 2012-01-01, 2012-01-31, 0, (245, b"Conversion failed when converting the nvarchar value 'Pottawattamie' to data type int.DB-Lib error message 20018, severity 16:\nGeneral SQL Server error: Check messages from the SQL Server\n")
