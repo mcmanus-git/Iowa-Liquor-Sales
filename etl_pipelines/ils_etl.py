@@ -2,7 +2,7 @@ import pandas as pd
 from MyCreds.mycreds import IowaData
 import pymssql
 import h3
-from sodapy import Socrata # < Unmaintained as of August 31, 2022, just in time for this project
+from sodapy import Socrata  # < Unmaintained as of August 31, 2022, just in time for this project
 import numpy as np
 from datetime import datetime, timedelta
 from tqdm import tqdm
@@ -40,7 +40,7 @@ def clean_dataframe(df, h3_resolution=8):
                   right_index=True)
 
     def lat_long_to_h3(row):
-        return h3.geo_to_h3(lat=row.lat,lng=row.long,resolution = h3_resolution)
+        return h3.geo_to_h3(lat=row.lat, lng=row.long, resolution=h3_resolution)
 
     df['hex_id'] = df.apply(lat_long_to_h3, axis=1)
     df['date'] = pd.to_datetime(df['date'])
@@ -63,13 +63,13 @@ def chunks(lst, n):
         yield lst[i:i + n]
 
 
-def load(df):
+def load(df, run_start_time, interval):
     server = IowaData.azure_server
     user = IowaData.azure_uid
     password = IowaData.azure_pwd
 
     write_data = list(map(tuple, df.fillna(0).values))
-    insert_query = f"""INSERT INTO invoices.temptable({', '.join([*df.columns])}) VALUES ({', '.join(['%s' for col in df.columns])})"""
+    insert_query = f"""INSERT INTO invoices.invoices_raw({', '.join([*df.columns])}) VALUES ({', '.join(['%s' for col in df.columns])})"""
     insert_q, values_q = insert_query.split('VALUES') # get part with the query and the parameters
     insert_q += 'VALUES' # add values to make sql query correct after split
 
@@ -77,35 +77,16 @@ def load(df):
         with cnxn.cursor() as cur:
 
             for chunk_data in chunks(write_data, 1000):
-                # chunk_data contains list of row parameters
-                flat_list = [item for sublist in chunk_data for item in sublist] # we make it flat to use execute later instead execute_many
-                chunk_query = insert_q + ','.join([values_q] * len(chunk_data)) # creating the query with multiple values insert
-                cur.execute(chunk_query, tuple(flat_list))
-                cnxn.commit()
-
-
-
-    # write_data = [str(rec) for rec in df.fillna(0).to_records(index=False)]
-    # insert_query_part = f"INSERT INTO invoices.temptable({', '.join([*df.columns])})"
-    #
-    # for chunk in tqdm(chunks(write_data, 10000)):
-    #     val_query_part = f"VALUES {', '.join(chunk)}"
-    #     insert_chunk_query = insert_query_part + "\n" + val_query_part + ";"
-    #     with pymssql.connect(server, user, password, "iowa_liquor") as cnxn:
-    #         with cnxn.cursor() as cur:
-    #             cur.execute(insert_chunk_query, write_data)
-    #             cnxn.commit()
-
-
-    # insert_query = f"""INSERT INTO invoices.temptable({', '.join([*df.columns])})
-    # VALUES ({', '.join(['%s' for col in df.columns])})"""
-    #
-    # write_data = tuple(map(tuple, df.fillna(0).values))
-    #
-    # with pymssql.connect(server, user, password, "iowa_liquor") as cnxn:
-    #     with cnxn.cursor() as cur:
-    #         cur.executemany(insert_query, write_data)
-    #         cnxn.commit()
+                try:
+                    # chunk_data contains list of row parameters
+                    # we make it flat to use execute later instead execute_many
+                    flat_list = [item for sublist in chunk_data for item in sublist]
+                    # creating the query with multiple values insert
+                    chunk_query = insert_q + ','.join([values_q] * len(chunk_data))
+                    cur.execute(chunk_query, tuple(flat_list))
+                    cnxn.commit()
+                except Exception as e:
+                    log(run_start_time, interval, successful=0, error=e)
 
 
 def main():
@@ -130,7 +111,7 @@ def main():
             socrata_df = pd.DataFrame.from_records(results)
             socrata_df = clean_dataframe(socrata_df)
             print("Loading results...")
-            load(socrata_df)
+            load(socrata_df, run_start_time, interval)
             log(run_start_time, interval)
 
         except Exception as e:
